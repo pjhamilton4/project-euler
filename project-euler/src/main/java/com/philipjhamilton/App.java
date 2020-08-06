@@ -1,7 +1,6 @@
 package com.philipjhamilton;
 
-import com.philipjhamilton.problem.Problem;
-import com.philipjhamilton.problem.Problem1;
+import com.philipjhamilton.problem.*;
 
 /**
  * Hello world!
@@ -11,7 +10,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        Problem p = new Problem1();
+        Problem p = new Problem2();
 
         System.out.println(p.solve());
 
