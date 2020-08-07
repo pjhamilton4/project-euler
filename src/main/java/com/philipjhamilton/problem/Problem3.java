@@ -12,10 +12,10 @@ public class Problem3 implements Problem<Long>{
         Long largestPrime = 0L;
 
         for(long i = 3; i*i <= primeFactor; i += 2){
-            System.out.println("i = " + i);
+            //System.out.println("i = " + i);
             if(primeFactor % i == 0){
                 if(isPrime(i)){
-                    System.out.println("New Largest is: " + i);
+                    //System.out.println("New Largest is: " + i);
                     largestPrime = i;
                 }
             }
