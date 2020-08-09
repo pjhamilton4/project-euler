@@ -2,7 +2,6 @@ package com.philipjhamilton.files;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.math.BigInteger;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +33,36 @@ public final class FileReader{
         return output;
     }
 
+    public static int[][] readToGrid(String file, int rows, int cols){
+        int[][] output = new int [rows][cols];
+
+        File inputFile = getFileFromResources(file);
+
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(inputFile);
+
+            int rowCount = 0;
+            int colCount = 0;
+
+            while(scanner.hasNext())
+            {
+                String temp = scanner.next();
+                output[rowCount][colCount] = Integer.valueOf(temp);
+                colCount++;
+                if(colCount == 20){
+                    colCount = 0;
+                    rowCount++;
+                }
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return output;
+    }
+
     private static File getFileFromResources(String fileName) {
 
         ClassLoader classLoader = FileReader.class.getClassLoader();
@@ -45,5 +74,4 @@ public final class FileReader{
             return new File(resource.getFile());
         }
     }
-
 }
