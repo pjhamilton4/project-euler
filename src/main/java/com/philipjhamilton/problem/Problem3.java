@@ -1,8 +1,6 @@
 package com.philipjhamilton.problem;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
+import com.philipjhamilton.MathHelper;
 
 public class Problem3 implements Problem<Long>{
 
@@ -14,7 +12,7 @@ public class Problem3 implements Problem<Long>{
         for(long i = 3; i*i <= primeFactor; i += 2){
             //System.out.println("i = " + i);
             if(primeFactor % i == 0){
-                if(isPrime(i)){
+                if(MathHelper.isPrime(i)){
                     //System.out.println("New Largest is: " + i);
                     largestPrime = i;
                 }
@@ -24,18 +22,5 @@ public class Problem3 implements Problem<Long>{
         return largestPrime;
     }
 
-    private boolean isPrime(long n){
 
-        if( n % 2 == 0 ){
-            return false;
-        }
-
-        for(long i = 3L; i*i <= n; i += 2){
-            if(n % i == 0){
-                return false;
-            }
-        }
-
-        return true;
-    }
 }
