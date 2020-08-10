@@ -2,6 +2,7 @@ package com.philipjhamilton.files;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.math.BigInteger;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +56,26 @@ public final class FileReader{
                     rowCount++;
                 }
 
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return output;
+    }
+
+    public static List<BigInteger> readLinestoBigIntegers(String file){
+        List<BigInteger> output = new ArrayList<BigInteger>(100);
+
+        File inputFile = getFileFromResources(file);
+
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(inputFile);
+
+            while(scanner.hasNextBigInteger())
+            {
+                output.add(scanner.nextBigInteger());
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
