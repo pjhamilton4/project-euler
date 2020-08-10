@@ -25,5 +25,8 @@ hs_err_pid*
 # intellij
 /.idea
 
+# target folder
+/target
+
 # iml file
 *.iml
