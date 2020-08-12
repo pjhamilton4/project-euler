@@ -12,7 +12,7 @@ public class Problem18 implements Problem<Integer>{
 
         int bestIdx = 0;
         int pathSum = 0;
-        for(int x = 0; x < triangle.length; x++){
+        for(int x = triangle.length-1; x >= 0; x--){
             if(x == 0){
                 System.out.println(String.format("Starting with X,Y: %d, %d with value: %d", x, bestIdx, triangle[x][bestIdx]));
                 pathSum += triangle[0][0];
@@ -22,8 +22,10 @@ public class Problem18 implements Problem<Integer>{
                 System.out.println(String.format("Choosing X,Y: %d, %d with value: %d", x, bestIdx, triangle[x][bestIdx]));
                 System.out.println(triangle[x][bestIdx]);
                 pathSum += triangle[x][bestIdx];
+                continue;
             }else {
                 System.out.println(String.format("Choosing X,Y: %d, %d with value: %d", x, bestIdx+1, triangle[x][bestIdx+1]));
+                System.out.println(triangle[x][bestIdx+1]);
                 pathSum += triangle[x][bestIdx+1];
                 bestIdx = bestIdx+1;
             }
