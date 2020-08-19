@@ -2,6 +2,7 @@ package com.philipjhamilton;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public final class MathHelper {
@@ -174,5 +175,22 @@ public final class MathHelper {
         return sb.toString();
     }
 
+    public static ArrayList<Long> findFactors(Long num){
+        HashSet<Long> factors = new HashSet<Long>();
+
+        for(long i = 1; i <= Math.sqrt(num); i += (num % 2 == 0? 1: 2)){
+            if (num % i == 0) {
+                factors.add(i);
+
+                if (i != num / i && num != num / i) {
+                    factors.add(num / i);
+                }
+            }
+        }
+        //Could sort if you needed
+        //Collections.sort(factors)
+
+        return new ArrayList<Long>(factors);
+    }
 
 }
