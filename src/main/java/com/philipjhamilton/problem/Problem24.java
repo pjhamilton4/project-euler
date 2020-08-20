@@ -31,7 +31,7 @@ public class Problem24 implements Problem<String>{
                 idx++;
                 j--;
             }
-            //System.out.println(Arrays.toString(digits));
+            System.out.println(Arrays.toString(digits));
         }
 
         //System.out.println(Arrays.toString(digits));
