@@ -2,49 +2,44 @@ package com.philipjhamilton.problem;
 
 import com.philipjhamilton.MathHelper;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 // TODO - SOLVE THIS
 public class Problem23 implements Problem<Long> {
+
+    private static final int LIMIT = 28123;
+
     @Override
     public Long solve() {
         long totSum = 0;
-        HashSet<Long> abundant = new HashSet<Long>();
+        Set<Integer> abundant = new HashSet<Integer>(LIMIT);
 
-
-        for(long i = 1; i < 28123; i++){
-            List<Long> numDiv = MathHelper.findFactors(i);
-
-            //System.out.println(Arrays.toString(numDiv.toArray()));
-            long sum = 0;
-            for (Long n : numDiv) {
-                sum += n;
-            }
-
-            if(sum > i){
+        for(Integer i = 2; i < LIMIT; i++){
+            if(MathHelper.sumForArrayList(MathHelper.findFactors((long)i)) > i){
                 abundant.add(i);
             }
         }
 
         System.out.println(Arrays.toString(abundant.toArray()));
         System.out.println(abundant.size());
-        HashSet<Long> toRemove = new HashSet<Long>();
-        for(Long l: abundant){
-            if(abundant.contains(l+l)){
-                toRemove.add(l+l);
+
+        List<Integer> abundantList = new ArrayList<Integer>(abundant);
+        boolean[] abundentAdded = new boolean[LIMIT+1];
+        for(int i = 0; i < abundantList.size(); i++){
+            for(int j = i; j < abundantList.size(); j++){
+                if(abundantList.get(i) + abundantList.get(j) <= LIMIT){
+                    abundentAdded[abundantList.get(i) + abundantList.get(j)] = true;
+                }else{
+                    break;
+                }
             }
         }
 
-        abundant.removeAll(toRemove);
-
-        for(long l: abundant){
-            totSum+=l;
+        for(int i = 1; i <= LIMIT; i++){
+            if(!abundentAdded[i]){
+                totSum+=i;
+            }
         }
-
-        System.out.println(Arrays.toString(abundant.toArray()));
-        System.out.println(abundant.size());
 
         return totSum;
     }

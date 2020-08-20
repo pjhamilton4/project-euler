@@ -175,6 +175,15 @@ public final class MathHelper {
         return sb.toString();
     }
 
+    public static long sumForArrayList(List<Long> list){
+        long sum = 0;
+        for (long i : list) {
+            sum += i;
+        }
+        return sum;
+    }
+
+
     public static ArrayList<Long> findFactors(Long num){
         HashSet<Long> factors = new HashSet<Long>();
 
