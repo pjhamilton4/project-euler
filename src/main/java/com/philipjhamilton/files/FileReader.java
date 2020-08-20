@@ -16,8 +16,6 @@ public final class FileReader {
     private FileReader(String file) {
     }
 
-    ;
-
     public static List readToLongArray(String file) {
         List<Long> output = new ArrayList<Long>();
         File inputFile = getFileFromResources(file);
@@ -133,6 +131,28 @@ public final class FileReader {
         }
 
         return output;
+    }
+
+    public static ArrayList<String> readStringsFromFile(String file){
+        List<String> output = new ArrayList<String>(6000);
+
+        File inputFile = getFileFromResources(file);
+
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(inputFile);
+
+            while (scanner.hasNext()) {
+                String[] temp = scanner.next().split(",");
+                for(String s: temp){
+                    output.add(s.replace("\"", ""));
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return (ArrayList<String>)output;
     }
 
     private static File getFileFromResources(String fileName) {
