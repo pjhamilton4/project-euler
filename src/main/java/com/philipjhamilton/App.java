@@ -10,7 +10,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        Problem p = new Problem25();
+        Problem p = new Problem27();
 
         System.out.println(p.solve());
 

@@ -67,8 +67,6 @@ public final class MathHelper {
     private MathHelper() {
     }
 
-    ;
-
     public static boolean isPrime(long n) {
 
         if (n <= 1)
