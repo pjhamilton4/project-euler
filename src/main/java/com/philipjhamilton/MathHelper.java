@@ -4,6 +4,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.LongStream;
 
 public final class MathHelper {
 
@@ -198,6 +199,11 @@ public final class MathHelper {
         //Collections.sort(factors)
 
         return new ArrayList<Long>(factors);
+    }
+
+    public static long factorialUsingStreams(long n) {
+        return LongStream.rangeClosed(1, n)
+                .reduce(1, (long x, long y) -> x * y);
     }
 
 }
