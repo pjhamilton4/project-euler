@@ -4,6 +4,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.LongStream;
 
 public final class MathHelper {
@@ -204,6 +205,26 @@ public final class MathHelper {
     public static long factorialUsingStreams(long n) {
         return LongStream.rangeClosed(1, n)
                 .reduce(1, (long x, long y) -> x * y);
+    }
+
+    public static List<Long> rotateLong(long num){
+        Set<Long> output = new HashSet<Long>(10);
+
+        output.add(num); //Add num to output before changing it
+        char[] temp = String.valueOf(num).toCharArray();
+
+        for(int i = 0; i < temp.length-1; i++){
+            char last = temp[temp.length-1];
+
+            for(int j = temp.length-1; j > 0; j--){
+                temp[j] = temp[j-1];
+            }
+
+            temp[0] = last;
+            output.add(Long.valueOf(new String(temp)));
+        }
+
+        return new ArrayList<Long>(output);
     }
 
 }
