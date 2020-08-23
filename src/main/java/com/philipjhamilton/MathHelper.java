@@ -267,4 +267,31 @@ public final class MathHelper {
         return isPandigital;
     }
 
+    public static boolean isPandigital(String num, int digits){
+        boolean isPandigital = false;
+        char[] nums = {'1','2','3','4','5','6','7','8','9'};
+
+        if(num.length() == digits){
+            int matched = 0;
+            HashSet<Character> found = new HashSet<Character>();
+            for(char c: num.toCharArray()){
+                for(int i = 0; i < digits; i++){
+                    if(c == nums[i] && !found.contains(c)){
+                        matched++;
+                        found.add(c);
+                    }
+                }
+            }
+            if(matched == digits){
+                isPandigital = true;
+            }
+        }
+        return isPandigital;
+    }
+
+
+    public static boolean isPandigital(long num, int digits){
+        return isPandigital(String.valueOf(num), digits);
+    }
+
 }
