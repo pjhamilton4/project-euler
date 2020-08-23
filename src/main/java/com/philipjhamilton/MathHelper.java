@@ -227,4 +227,22 @@ public final class MathHelper {
         return new ArrayList<Long>(output);
     }
 
+    public static boolean isPalindrome(String num){
+        boolean isPalindrome = true;
+
+        char[] numArr =  num.toCharArray();
+
+        for(int i=0; i <= numArr.length/2; i++){
+            if (numArr[0+i] != numArr[(numArr.length-1) - i]){
+                isPalindrome = false;
+            }
+        }
+
+        return isPalindrome;
+    }
+
+    public static boolean isPalindrome(int num){
+        return isPalindrome(String.valueOf(num));
+    }
+
 }
