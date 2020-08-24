@@ -247,23 +247,24 @@ public final class MathHelper {
 
     public static boolean isPandigital(String num){
         boolean isPandigital = false;
-        char[] nums = {'1','2','3','4','5','6','7','8','9'};
+        char[] nums = {'0', '1','2','3','4','5','6','7','8','9'};
 
-        if(num.length() == 9){
-            int matched = 0;
-            HashSet<Character> found = new HashSet<Character>();
-            for(char c: num.toCharArray()){
-                for(int i = 0; i < nums.length; i++){
-                    if(c == nums[i] && !found.contains(c)){
-                        matched++;
-                        found.add(c);
-                    }
+        //System.out.println("Attempting to match string " + num + " to pandigital");
+        int matched = 0;
+        HashSet<Character> found = new HashSet<Character>();
+        for(char c: num.toCharArray()){
+            for(int i = 0; i < nums.length; i++){
+
+                if( !found.contains(c) && c == nums[i] ){
+                    matched++;
+                    found.add(c);
                 }
             }
-            if(matched == 9){
-                isPandigital = true;
-            }
         }
+        if(matched == num.length()){
+            isPandigital = true;
+        }
+
         return isPandigital;
     }
 
