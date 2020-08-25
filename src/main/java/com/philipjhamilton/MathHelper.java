@@ -295,4 +295,17 @@ public final class MathHelper {
         return isPandigital(String.valueOf(num), digits);
     }
 
+    public static long solveTriangle(long n){
+        return n * (n + 1) / 2;
+    }
+
+    public static long solvePentagonal(long n){
+        return n * ((3 * n) - 1) / 2;
+    }
+
+    public static long solveHexagonal(long n){
+        return n * ((2 * n) - 1);
+    }
+
+
 }
