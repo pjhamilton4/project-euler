@@ -36,5 +36,6 @@ public class Problem47 implements Problem<Long> {
 //            }
 //        }
 //        return nums[0];
+        return null;
     }
 }
