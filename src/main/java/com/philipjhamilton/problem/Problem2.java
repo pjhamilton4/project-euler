@@ -16,7 +16,7 @@ public class Problem2 implements Problem<Long>{
         long sum = 2;
         long temp = 0;
 
-        while(sum <= 4_000_000){
+        while(sum <= 10){
             temp = prev[0] + prev[1];
             if(temp % 2 == 0){
                 sum += temp;
