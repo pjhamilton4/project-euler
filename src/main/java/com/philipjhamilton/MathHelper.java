@@ -356,4 +356,36 @@ public final class MathHelper {
         }
         return output;
     }
+
+    public static int numberOfPrimeFacors(int number) {
+        List<Integer> primes = sieveOfEratosthenes(10000);
+
+        int nod = 0;
+        boolean pf;
+        int remain = number;
+
+        for (int i = 0; i < primes.size(); i++) {
+            // In case there is a remainder this is a prime factor as well
+            // The exponent of that factor is 1
+            if (primes.get(i) * primes.get(i) > number) {
+                return ++nod;
+            }
+
+            pf = false;
+            while (remain % primes.get(i) == 0) {
+                pf = true;
+                remain = remain / primes.get(i);
+            }
+            if (pf){
+                nod++;
+            }
+
+            //If there is no remainder, return the count
+            if (remain == 1) {
+                return nod;
+            }
+        }
+        return nod;
+    }
+
 }

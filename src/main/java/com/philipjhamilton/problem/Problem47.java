@@ -8,6 +8,19 @@ import java.util.List;
 public class Problem47 implements Problem<Long> {
     @Override
     public Long solve() {
+        int targetpf = 4;
+        int targetConsec = 4;
+        int consec = 1;
+        int result = 2 * 3 * 5 *7;
+
+        while (consec < targetConsec) {
+            result++;
+            if (MathHelper.numberOfPrimeFacors(result) >= targetpf) {
+                consec++;
+            } else {
+                consec = 0;
+            }
+        }
 
 //        int count = 0;
 //        long[] nums = new long[]{0 ,0 ,0};
@@ -36,6 +49,6 @@ public class Problem47 implements Problem<Long> {
 //            }
 //        }
 //        return nums[0];
-        return null;
+        return (long)result-targetConsec+1;
     }
 }

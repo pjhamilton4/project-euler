@@ -1,40 +1,81 @@
 package com.philipjhamilton.problem;
 
 import com.philipjhamilton.MathHelper;
+import com.philipjhamilton.files.FileReader;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URL;
 import java.util.*;
 
-public class Problem50 implements Problem<Long>{
+public class Problem50 implements Problem<Long> {
 
     @Override
     public Long solve() {
 
-        int longestRun = 0;
+        ClassLoader classLoader = FileReader.class.getClassLoader();
 
-//        Set<Integer> primes = new TreeSet<Integer>();
-//        //List of primes under 1 million
-//        for(int i=1; i< 1000000; i++){
-//            if(MathHelper.isPrime(i)){
-//                primes.add(i);
-//            }
-//        }
-//
-//        List<Integer> sortedList = new ArrayList<Integer>(primes);
-//        for(int i = 0; i < sortedList.size(); i++){
-//            int sum = 0;
-//            for(int j = i; j < sortedList.size(); j++){
-//                    sum += sortedList.get(j);
-//                    if (MathHelper.isPrime(sum) && sum < 1000000) {
-//                        if (j > longestRun) {
-//                            longestRun = j;
-//                        }
-//                    }else{
-//                        break;
-//                    }
-//            }
-//        }
+        URL resource = classLoader.getResource("test_file.txt");
+
+        Scanner sc = null;
+        try {
+            sc = new Scanner(new File(resource.getFile()));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        while (sc.hasNext()) {
+            String input = sc.next();
+            System.out.println(areParanthesisBalanced(input));
+        }
 
         return 0L;
         //return (long)sortedList.get(longestRun);
+    }
+
+    static boolean areParanthesisBalanced(String expr)
+    {
+        // Using ArrayDeque is faster than using Stack class
+        Deque<Character> stack = new ArrayDeque<Character>();
+
+        // Traversing the Expression
+        for (int i = 0; i < expr.length(); i++) {
+            char x = expr.charAt(i);
+
+            if (x == '(' || x == '[' || x == '{') {
+                // Push the element in the stack
+                stack.push(x);
+                continue;
+            }
+
+            // IF current current character is not opening
+            // bracket, then it must be closing. So stack
+            // cannot be empty at this point.
+            if (stack.isEmpty())
+                return false;
+
+            switch (x) {
+                case ')':
+                    stack.pop();
+                    if (x == '{' || x == '[')
+                        return false;
+                    break;
+
+                case '}':
+                    stack.pop();
+                    if (x == '(' || x == '[')
+                        return false;
+                    break;
+
+                case ']':
+                    stack.pop();
+                    if (x == '(' || x == '{')
+                        return false;
+                    break;
+            }
+        }
+
+        // Check Empty Stack
+        return (stack.isEmpty());
     }
 }
